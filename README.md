@@ -75,7 +75,7 @@ InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 
 #### Inheritance (extends Entity):
 
 * **이유:** 공통된 '속성'과 '상태'를 물려주기 위해 사용했습니다.
-* **적용:** Player와 Monster는 모두 생명체(Entity)이므로, <br/> hp, name, attackPower 등의 필드를 코드 중복 없이 재사용하고 takeDamage()와 같은 공통 로Ghd을 공유합니다.
+* **적용:** Player와 Monster는 모두 생명체(Entity)이므로, <br/> hp, name, attackPower 등의 필드를 코드 중복 없이 재사용하고 takeDamage()와 같은 공통 로직을 공유합니다.
 
 #### Abstract Class (Entity, Monster):
 
@@ -152,3 +152,30 @@ HP를 증가시킨 후 if (this.hp > this.maxHp) 조건문을 추가하여, 현�
 2. **Eclipse IDE**에서 `File > Import > General > Existing Projects into Workspace`를 선택합니다.
 3. **Select root directory**에서 Clone 받은 `Java-project` 폴더를 선택하고 **Finish**를 누릅니다.
 4. `src/project/Game.java` 파일을 찾아 **Run As > Java Application**으로 실행합니다.
+
+
+--- 
+
+## 추후 추가기능 예상
+
+ 1) 방어 로직 - 지금은 공격(attack)과 인벤토리 (inventory) 만 존재하지만 방어(defense)를 추가 
+ 2) 경험치 추가 - Player가 Mosnter를 잡았을경우 경험치 상승 (Level up!)
+ 3) gold 시스템 추가 - Player가 전투에서 승리했을 경우 gold 획득
+ 4) 상점 시스템 추가 - 메인 메뉴에 1. 전투개시 + 2. 인벤토리 + new (3. 상점 ) + 4. 종료
+                     + 판매 시스템 도입 - Monster 전리품 을 판매할 수 있음
+ 5) 몬스터 추가 - 현재는 3개의 Monster가 있지만 추가로 약한 몬스터~강한 몬스터 = 다양한 몬스터 추가 예정
+ 6) 몬스터 도감 - Player가 만난 Monster 들을 도감에 저장 (정보 저장 - hp , attackPower ,  isDodged ...)
+
+## 마치며
+   
+이번 미니 프로젝트를 진행하며 단순한 텍스트 RPG 게임을 완성하는 것을 넘어, <br/> 
+견고한 객체 지향 프로그래밍(OOP) 설계의 중요성을 깊이 있게 고민하고 적용해볼 수 있었습니다. <br/>
+
+인터페이스와 추상클래스 그리고 상속등 복잡한 관계들을 다시한번 적립하고 공부할수 있는 시간이였고 <br/>
+예외처리 try-catch 문을 사용해 예외가 발생할수 있는 부분을 미리 생각함과 동시에 <br/>
+효율적인 처리를 위해 많은 고민을 했습니다 <br/>
+또한, InvalidInputException을 통해 예외 처리 로직을 비즈니스 로직과 분리(SRP)하는 과정을 통해,<br/>
+단순히 오류를 잡는 것을 넘어 책임을 명확히 분리하여 견고하고 유지보수하기 좋은 코드를 작성하는 예외 처리의 핵심 개념을 배울 수 있었습니다. <br/>
+
+실제로 적용하고 부딪혔던 문제들을 해결해 나간 과정은 매우 의미 있고 소중한 학습 경험이었습니다.
+
