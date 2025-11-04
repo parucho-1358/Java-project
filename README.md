@@ -15,7 +15,8 @@
 
 ### 클래스 다이어그램 (UML)
 
-<img width="3948" height="2428" alt="제목 없음 (27)" src="https://github.com/user-attachments/assets/04e3a195-33bc-4a3a-beca-e2297f68c553" />
+<img width="3948" height="2428" alt="제목 없음 (28)" src="https://github.com/user-attachments/assets/33ef8098-1c5c-482a-a9d9-9c2a3fac1e15" />
+
 
 ---
 
