@@ -82,6 +82,21 @@ InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 
 * **이유:** 공통 로직은 제공하되, 세부 구현은 자식 클래스에게 맡기기 위해 사용했습니다.
 * **적용:** Monster 클래스를 추상 클래스로 만들어, Slime, Goblin 등이 이를 구체화하도록 하여 확장성을 높였습니다. <br/>
 
+``` 
+한눈에 보기!
+1. 인터페이스 (Character.java):
+
+            목적: attack(), isDodged()라는 행동의 규격을 정의하여, <br/>모든 전투 참여 객체(Entity를 상속받는 모든 것)가 이 행동을 구현하도록 강제합니다.
+
+2. 추상 클래스 (Entity.java):
+
+            목적: name, hp, attackPower 같은 공통 속성과 takeDamage()처럼 모든 캐릭터가<br/> 공유하는 기본 로직을 제공합니다. (단, Entity 그 자체는 객체로 만들 수 없습니다.)
+
+3. 상속 (Player.java, Monster.java):
+
+            목적: Player와 Monster는 Entity를 상속받아 기본 능력치와 공통 로직을 물려받아 사용하고,<br/> 각자의 고유한 기능(예: Player의 heal(), Inventory 사용)을 추가하여 확장합니다.
+```
+
 
 ### 예외 처리 분리 (SOLID - SRP)
 
