@@ -98,6 +98,16 @@ java public void useItem(String itemName) { // 개수를 계산하고... // item
 ```
 items.get()을 통해 값을 가져와 연산한 후에는 반드시 **items.put(Key, NewValue)**를 호출하여 <br/>Map 내의 데이터를 최종적으로 갱신해주는 코드를 추가하여 해결했습니다.
 
+### 2) 최대 체력 초과 회복 버그 (Boundary Check 누락)
+```
+java public void heal(int healAmount) { this.hp += healAmount; // Max HP 초과 }
+```
+수정 ↓↓↓↓↓↓↓
+```
+java public void heal(int healAmount) { this.hp += healAmount; if (this.hp > this.maxHp) { // 경계 조건 체크 this.hp = this.maxHp; // 최대치로 제한 } }
+```
+HP를 증가시킨 후 if (this.hp > this.maxHp) 조건문을 추가하여, 현재 HP가 최대 HP를 초과할 경우 HP를 maxHp로 강제로 설정
+
 ---
 ## 🚀 실행 방법
 
