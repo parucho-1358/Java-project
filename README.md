@@ -73,9 +73,6 @@ has (composition)
 - Player has Inventory
 ```
 
-**초기 List 구조에서 Inventory 클래스를 분리하고, 예외 처리를 위한 <br/>
-InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 구조로 리팩토링했습니다.**
-
 ### 상속과 인터페이스를 사용한 이유 (OOP)
 
 **이 프로젝트는 객체 지향의 핵심인 상속과 인터페이스를 적극적으로 활용했습니다.**
