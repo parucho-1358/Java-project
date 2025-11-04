@@ -43,6 +43,8 @@
 ### 클래스 다이어그램 (UML)
 
 <img width="3948" height="2428" alt="제목 없음 (27)" src="https://github.com/user-attachments/assets/04e3a195-33bc-4a3a-beca-e2297f68c553" />
+
+
 ```
 implements
 - Entity implements Character
