@@ -6,26 +6,21 @@
 
 ## 🖥️ 실제 실행 화면
 
-**(실제 게임 플레이 GIF 또는 스크린샷을 여기에 삽입하세요)**
 
-
-1) 전투 (Slime , Goblin , Boss -> 랜덤 스폰) Player turn , Monster turn
+1) ## 전투 (Slime , Goblin , Boss -> 랜덤 스폰) Player turn , Monster turn
    attack(공격) , isDodged(회피)
 ![Playlist](https://github.com/user-attachments/assets/e81f8623-de26-4ea9-a79c-5f3f92cacfeb)
+<br/>
 
-
-2) 인벤토리 (포션 , 전리품)
+2) ## 인벤토리 (포션 , 전리품)
    포션 사용 , 전리품 획득
 ![인벤토리 , 회복](https://github.com/user-attachments/assets/e6c2f014-2a30-4209-9ef0-2076fb776a2c)
+<br/>
 
 
-3) 잘못된 입력을 했을 경우 (Exception)
+3) ## 잘못된 입력을 했을 경우 (Exception)
 ![예외처리](https://github.com/user-attachments/assets/32baf655-ee3f-47e2-b134-d73048f7c465)
-
-
-   
-```
-```
+<br/>
 
 ---
 
@@ -43,12 +38,12 @@
 
 ### 클래스 다이어그램 (UML)
 
-**(최종적으로 완성한 UML 클래스 다이어그램 이미지를 여기에 삽입하세요)**
+<img width="3948" height="2428" alt="제목 없음 (27)" src="https://github.com/user-attachments/assets/04e3a195-33bc-4a3a-beca-e2297f68c553" />
 
-```
-```
 
-**초기 List 구조에서 Inventory 클래스를 분리하고, 예외 처리를 위한 InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 구조로 리팩토링했습니다.**
+
+**초기 List 구조에서 Inventory 클래스를 분리하고, 예외 처리를 위한 <br/>
+InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 구조로 리팩토링했습니다.**
 
 ### 상속과 인터페이스를 사용한 이유 (OOP)
 
@@ -92,28 +87,18 @@
 
 ## ⚙️ 겪었던 오류 및 해결 과정
 
-### Player 클래스의 비대화 (SRP 위반)
+### 1)인벤토리 아이템 개수 감소 버그 (Map 데이터 갱신 누락)
+```
+java public void useItem(String itemName) { int newCount = items.get(itemName) - 1; // !! ⚠️ newCount를 Map에 다시 저장하는 코드 누락 !! }
+```
+수정 ↓↓↓↓↓↓↓
 
-* **오류:** 초기에는 Player 클래스가 캐릭터 로직과 인벤토리(Map) 관리 로직을 모두 가지고 있어 코드가 복잡했습니다.
-* **해결:** Inventory 클래스를 새로 만들어 Map과 아이템 관련 메서드를 모두 위임했습니다. Player는 `inventory.useItem()`처럼 호출만 하도록 변경하여 단일 책임 원칙(SRP)을 준수했습니다.
-
-### 인벤토리 아이템 개수 감소 버그
-
-* **오류:** 포션 사용 시 `player.heal()`은 동작했지만 아이템 개수가 줄지 않았습니다.
-* **해결:** `Inventory.java`의 `useItem()` 메서드에서 `items.get(itemName) - 1`로 계산만 하고, `items.put()`으로 맵에 다시 저장하지 않은 논리적 오류를 발견하여 수정했습니다.
-
-### Git & SourceTree 푸시(Push) 오류
-
-* **오류:** SourceTree를 이용해 GitHub에 푸시할 때 non-fast-forward 오류, 유효한 저장소가 아님 오류, 빈 폴더만 업로드되는 등 수많은 Git 연결 오류가 발생했습니다.
-* **해결:**
-
-  * 로컬의 꼬인 Git 정보(숨겨진 .git 폴더)를 완전히 삭제했습니다.
-  * SourceTree에서 Java-project 최상위 폴더를 기준으로 로컬 저장소를 재생성했습니다.
-  * 커밋 시 `bin/`, `.settings/` 등 불필요한 파일(컴파일 결과물)을 제외하고, `src/`, `.classpath`, `.project` 파일만 선택적으로 Stage에 올려 커밋했습니다.
-  * `git push --set-upstream origin main` 명령어를 터미널에서 실행하여 로컬 브랜치와 원격 브랜치를 강제로 연결한 후 푸시에 성공했습니다.
+```
+java public void useItem(String itemName) { // 개수를 계산하고... // items.put()을 통해 Map의 Value를 최종 갱신합니다. items.put(itemName, items.get(itemName) - 1); }
+```
+items.get()을 통해 값을 가져와 연산한 후에는 반드시 **items.put(Key, NewValue)**를 호출하여 <br/>Map 내의 데이터를 최종적으로 갱신해주는 코드를 추가하여 해결했습니다.
 
 ---
-
 ## 🚀 실행 방법
 
 1. 이 저장소를 **Clone** 받습니다.
