@@ -158,13 +158,13 @@ HP를 증가시킨 후 if (this.hp > this.maxHp) 조건문을 추가하여, 현�
 
 ## 추후 추가기능 예상
 
- 1) 방어 로직 - 지금은 공격(attack)과 인벤토리 (inventory) 만 존재하지만 방어(defense)를 추가 
- 2) 경험치 추가 - Player가 Mosnter를 잡았을경우 경험치 상승 (Level up!)
- 3) gold 시스템 추가 - Player가 전투에서 승리했을 경우 gold 획득
- 4) 상점 시스템 추가 - 메인 메뉴에 1. 전투개시 + 2. 인벤토리 + new (3. 상점 ) + 4. 종료
+ 1) **방어 로직** - 지금은 공격(attack)과 인벤토리 (inventory) 만 존재하지만 방어(defense)를 추가 
+ 2) **경험치 추가** - Player가 Mosnter를 잡았을경우 경험치 상승 (Level up!)
+ 3) **gold 시스템 추가** - Player가 전투에서 승리했을 경우 gold 획득
+ 4) **상점 시스템 추가**- 메인 메뉴에 1. 전투개시 + 2. 인벤토리 + new (3. 상점 ) + 4. 종료<br/>
                      + 판매 시스템 도입 - Monster 전리품 을 판매할 수 있음
- 5) 몬스터 추가 - 현재는 3개의 Monster가 있지만 추가로 약한 몬스터~강한 몬스터 = 다양한 몬스터 추가 예정
- 6) 몬스터 도감 - Player가 만난 Monster 들을 도감에 저장 (정보 저장 - hp , attackPower ,  isDodged ...)
+ 5) **몬스터 추가** - 현재는 3개의 Monster가 있지만 추가로 약한 몬스터~강한 몬스터 = 다양한 몬스터 추가 예정
+ 6) **몬스터 도감** - Player가 만난 Monster 들을 도감에 저장 (정보 저장 - hp , attackPower ,  isDodged ...)
 
 ## 마치며
    
