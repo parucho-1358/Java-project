@@ -8,6 +8,18 @@
 
 **(실제 게임 플레이 GIF 또는 스크린샷을 여기에 삽입하세요)**
 
+
+1) 전투 (Slime , Goblin , Boss -> 랜덤 스폰) Player turn , Monster turn
+   attack(공격) , isDodged(회피)
+
+
+2) 인벤토리 (포션 , 전리품)
+   포션 사용 , 전리품 획득
+
+
+3) 잘못된 입력을 했을 경우 (Exception)
+
+   
 ```
 ```
 
