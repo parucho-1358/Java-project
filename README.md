@@ -19,6 +19,10 @@
 
 
 3) ## 잘못된 입력을 했을 경우 (Exception)
+    메인 메뉴 (잘못된 숫자 입력 )<br/>
+    전투 메뉴 (잘못된 숫자 입력) <br/>
+    인벤토리 메뉴 (잘못된 숫자 입력) <br/>
+   + 숫자가 아닌 다른 타입의 입력을 받았을 경우도 처리 (String ...)
 ![예외처리](https://github.com/user-attachments/assets/32baf655-ee3f-47e2-b134-d73048f7c465)
 <br/>
 
@@ -27,9 +31,9 @@
 ## 🎮 주요 기능
 
 * **턴제 전투 시스템:** 플레이어와 몬스터가 턴을 주고받으며 전투합니다.
-* **다양한 몬스터:** Slime, Goblin, Boss 등 다양한 몬스터가 확률적으로 스폰됩니다.
+* **다양한 몬스터:** Slime, Goblin, Boss 등 확률적으로 몬스터 스폰 
 * **아이템 및 인벤토리:** 전투 승리 시 아이템을 획득하며, Map을 이용해 효율적으로 인벤토리를 관리합니다.
-* **포션 사용:** 전투 중 포션을 사용하여 체력을 회복할 수 있습니다.
+* **포션 사용:** 전투 중 포션을 사용하여 Player의 체력을 회복할 수 있습니다.
 * **예외 처리:** 사용자 정의 예외(InvalidInputException)를 통해 잘못된 입력을 안정적으로 처리합니다.
 
 ---
@@ -39,8 +43,20 @@
 ### 클래스 다이어그램 (UML)
 
 <img width="3948" height="2428" alt="제목 없음 (27)" src="https://github.com/user-attachments/assets/04e3a195-33bc-4a3a-beca-e2297f68c553" />
+```
+implements
+- Entity implements Character
 
+extends
+- Player extends Entity
+- Monster (abstract) extends Entity
+- Slime  extends Monster
+- Goblin extends Monster
+- Boss   extends Monster
 
+has (composition)
+- Player has Inventory
+```
 
 **초기 List 구조에서 Inventory 클래스를 분리하고, 예외 처리를 위한 <br/>
 InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 구조로 리팩토링했습니다.**
@@ -56,23 +72,24 @@ InvalidInputException을 추가하여 단일 책임 원칙(SRP)을 준수하는 
 
 #### Inheritance (extends Entity):
 
-* **이유:** 공통된 '속성(Attribute)'과 '상태(State)'를 물려주기 위해 사용했습니다.
-* **적용:** Player와 Monster는 모두 생명체(Entity)이므로, hp, name, attackPower 등의 필드를 코드 중복 없이 재사용하고 takeDamage()와 같은 공통 로Ghd을 공유합니다.
+* **이유:** 공통된 '속성'과 '상태'를 물려주기 위해 사용했습니다.
+* **적용:** Player와 Monster는 모두 생명체(Entity)이므로, <br/> hp, name, attackPower 등의 필드를 코드 중복 없이 재사용하고 takeDamage()와 같은 공통 로Ghd을 공유합니다.
 
 #### Abstract Class (Entity, Monster):
 
 * **이유:** 공통 로직은 제공하되, 세부 구현은 자식 클래스에게 맡기기 위해 사용했습니다.
-* **적용:** Monster 클래스를 추상 클래스로 만들어, Slime, Goblin 등이 이를 구체화하도록 하여 확장성을 높였습니다.
+* **적용:** Monster 클래스를 추상 클래스로 만들어, Slime, Goblin 등이 이를 구체화하도록 하여 확장성을 높였습니다. <br/>
+
 
 ### 예외 처리 분리 (SOLID - SRP)
 
-**"Exception 클래스는 따로 분리하여 재사용할 수 있는 구조로 만들 것"이라는 요구사항에 따라, 단일 책임 원칙(SRP)을 적용하여 예외 처리 로직을 분리했습니다.**
+**"Exception 클래스는 따로 분리하여 재사용할 수 있는 구조. 단일 책임 원칙(SRP)을 적용하여 예외 처리 로직을 분리했습니다.**
 
 * **As-Is (변경 전):** InputHandler.java가 입력 로직과 try-catch를 이용한 예외 처리(메시지 출력, 재입력)를 모두 담당했습니다.
 * **To-Be (최종 코드):**
 
-  * **InputHandler:** 유효하지 않은 입력이 들어오면, 직접 처리하지 않고 `throw new InvalidInputException(...)`을 통해 예외를 던지는 책임만 집니다.
-  * **Game / BattleManager:** InputHandler를 호출하는 상위 클래스에서 try-catch로 예외를 받아 실제 예외를 처리(메시지 출력, 루프 재시작)하는 책임을 집니다.
+  * **InputHandler:** 유효하지 않은 입력 -> 직접 처리하지 않고 `throw new InvalidInputException(...)`을 통해 예외를 던짐
+  * **Game / BattleManager:** InputHandler를 호출하는 상위 클래스에서 try-catch로 예외를 받아 -> 실제 예외를 처리(메시지 출력, 루프 재시작)
   * **InvalidInputException.java:** 재사용 가능한 사용자 정의 예외 클래스를 생성하여 코드를 분리했습니다.
 
 ### 컬렉션 프레임워크 (Map)
