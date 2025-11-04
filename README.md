@@ -11,13 +11,17 @@
 
 1) 전투 (Slime , Goblin , Boss -> 랜덤 스폰) Player turn , Monster turn
    attack(공격) , isDodged(회피)
+![Playlist](https://github.com/user-attachments/assets/e81f8623-de26-4ea9-a79c-5f3f92cacfeb)
 
 
 2) 인벤토리 (포션 , 전리품)
    포션 사용 , 전리품 획득
+![인벤토리 , 회복](https://github.com/user-attachments/assets/e6c2f014-2a30-4209-9ef0-2076fb776a2c)
 
 
 3) 잘못된 입력을 했을 경우 (Exception)
+![예외처리](https://github.com/user-attachments/assets/32baf655-ee3f-47e2-b134-d73048f7c465)
+
 
    
 ```
